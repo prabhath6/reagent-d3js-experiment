@@ -1,11 +1,8 @@
 (ns reagent-d3js-experiment.core
     (:require
-      [reagent.core :as r]))
-
-;; -------------------------
-;; State
-
-(defonce controllers (r/atom {:m 12 :n 100 :v 2}))
+     [reagent.core :as r]
+     [reagent-d3js-experiment.state :as st]
+     [reagent-d3js-experiment.tadpole :as t]))
 
 ;; -------------------------
 ;; Helpers
@@ -25,7 +22,7 @@
            :on-change (fn [e]
                         (let [input-value (.. e -target -value)
                               converted-value (string->int input-value)]
-                          (swap! controllers assoc id converted-value)))}])
+                          (swap! st/controllers assoc id converted-value)))}])
 
 ;; -------------------------
 ;; Components
@@ -35,13 +32,13 @@
    [:ul
     [:li
      [:label {:class :m} "m: "]
-     [tadpole-handler :m (get @controllers :m)]]
+     [tadpole-handler :m (get @st/controllers :m)]]
     [:li
      [:label {:class :n} "n: "]
-     [tadpole-handler :n (get @controllers :n)]]
+     [tadpole-handler :n (get @st/controllers :n)]]
     [:li
      [:label {:class :v} "v: "]
-     [tadpole-handler :v (get @controllers :v)]]]])
+     [tadpole-handler :v (get @st/controllers :v)]]]])
 
 ;; -------------------------
 ;; Views
