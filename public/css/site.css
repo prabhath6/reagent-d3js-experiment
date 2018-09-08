@@ -32,3 +32,20 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.form {
+    width: 300px;
+}
+
+.form ul {
+    list-style:none;
+    padding: 0;
+}
+
+.form ul {
+    list-style: none;
+}
+
+.n, .v {
+    padding-right: 5px;
+}
