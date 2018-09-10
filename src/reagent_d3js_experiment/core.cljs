@@ -2,7 +2,8 @@
     (:require
      [reagent.core :as r]
      [reagent-d3js-experiment.state :as st]
-     [reagent-d3js-experiment.tadpole :as t]))
+     [reagent-d3js-experiment.tadpole :as t]
+     [cljsjs.d3]))
 
 ;; -------------------------
 ;; Helpers
@@ -13,6 +14,23 @@
 
 ;; -------------------------
 ;; Handlers
+
+;; tadpole stuff
+(defn svg-data []
+  [:circle {:cx "50"
+            :cy "50"
+            :r "40"
+            :stroke "black"
+            :stroke-width "3"
+            :fill "red"}])
+
+(defn set-svg-tadpole []
+  (-> js/d3
+      (.select "#tadpole")
+      (.append "svg")
+      (.attr "height" (get @st/dimensions :height))
+      (.attr "width" (get @st/dimensions :width))
+      (.attr "id" "svg-tadpole")))
 
 (defn tadpole-handler [id value]
   [:input {:type "text"
@@ -28,6 +46,17 @@
 ;; Components
 
 (defn form-component []
+  (set-svg-tadpole)
+  (prn (.getElementById js/document "svg-tadpole"))
+  (-> js/d3
+      (.select "#svg-tadpole")
+      (.append "circle")
+      (.attr "cx" 50)
+      (.attr "cy" 50)
+      (.attr "r" 40)
+      (.attr "stroke" "black")
+      (.attr "stroke-width" 3)
+      (.attr "fill" "red"))
   [:form {:class :form}
    [:ul
     [:li

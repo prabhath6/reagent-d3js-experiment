@@ -6,7 +6,8 @@
 
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.339"]
-                 [reagent "0.8.1"]]
+                 [reagent "0.8.1"]
+                 [cljsjs/d3 "4.12.0-0"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-figwheel "0.5.16"]]
@@ -52,4 +53,4 @@
                    :dependencies [[binaryage/devtools "0.9.10"]
                                   [figwheel-sidecar "0.5.16"]
                                   [nrepl "0.4.4"]
-                                  [cider/piggieback "0.3.8"]]}})
+                                  [cider/piggieback "0.3.9"]]}})
