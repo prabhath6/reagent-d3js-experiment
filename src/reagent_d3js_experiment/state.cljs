@@ -6,4 +6,4 @@
 
 (defonce controllers (r/atom {:m 12 :n 100 :v 2}))
 
-(defonce dimensions (r/atom {:height 600 :width 800}))
+(defonce dimensions (r/atom {:height 600}))

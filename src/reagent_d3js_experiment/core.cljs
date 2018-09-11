@@ -7,10 +7,17 @@
 
 ;; -------------------------
 ;; Helpers
+
 (defn string->int [value]
   (if (clojure.string/blank? value)
     0
     (js/parseInt value)))
+
+(defn get-height []
+  (get @st/dimensions :height))
+
+(defn get-width []
+  (* 0.8 (get-height)))
 
 ;; -------------------------
 ;; Handlers
@@ -25,12 +32,14 @@
             :fill "red"}])
 
 (defn set-svg-tadpole []
-  (-> js/d3
-      (.select "#tadpole")
-      (.append "svg")
-      (.attr "height" (get @st/dimensions :height))
-      (.attr "width" (get @st/dimensions :width))
-      (.attr "id" "svg-tadpole")))
+  (let [height (get-height)
+        width (get-width)]
+    (-> js/d3
+        (.select "#tadpole")
+        (.append "svg")
+        (.attr "height" height)
+        (.attr "width" width)
+        (.attr "id" "svg-tadpole"))))
 
 (defn tadpole-handler [id value]
   [:input {:type "text"
@@ -47,7 +56,6 @@
 
 (defn form-component []
   (set-svg-tadpole)
-  (prn (.getElementById js/document "svg-tadpole"))
   (-> js/d3
       (.select "#svg-tadpole")
       (.append "circle")
