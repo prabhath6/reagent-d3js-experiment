@@ -3,7 +3,8 @@
 
 ;; -------------------------
 ;; State
-
-(defonce controllers (r/atom {:m 12 :n 100 :v 2}))
-
 (defonce dimensions (r/atom {:height 600}))
+
+(defonce data (r/atom [{:x 1}
+	                     {:x 2}
+	                     {:x 3}]))
