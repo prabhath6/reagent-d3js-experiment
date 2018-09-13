@@ -63,16 +63,30 @@
         fixed 10]
     (-> js/d3
         (.select "#circle-chart")
-        (.selectAll "circle")
+        (.selectAll "circle.groupa")
         (.data test-data)
         .enter
         (.append "circle")
+        (.attr "class" "groupa")
         (.attr "cx" (fn [d i]
                       (* (+ i 1) (* (+ i 1) 15))))
         (.attr "cy" 100)
         (.attr "r" (fn [d i]
                      (string->int (aget d "x"))))
-        (.attr "fill" "red"))))
+        (.attr "fill" "red"))
+    (-> js/d3
+        (.select "#circle-chart")
+        (.selectAll "circle.groupb")
+        (.data test-data)
+        .enter
+        (.append "circle")
+        (.attr "class" "groupb")
+        (.attr "cx" (fn [d i]
+                      (* (+ i 1) (* (+ i 1) 15))))
+        (.attr "cy" 250)
+        (.attr "r" (fn [d i]
+                     (string->int (aget d "x"))))
+        (.attr "fill" "green"))))
 
 ;; -------------------------
 ;; Views
