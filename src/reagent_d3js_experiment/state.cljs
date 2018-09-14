@@ -17,3 +17,24 @@
                             {:x 60 :y 40}
                             {:x 80 :y 5}
                             {:x 100 :y 60}]))
+
+(defonce user-data (r/atom [{
+                             :name "Andy"
+                             :score 37
+                             }
+                            {
+                             :name "Beth"
+                             :score 39
+                             }
+                            {
+                             :name "Craig"
+                             :score 31
+                             }
+                            {
+                             :name "Diane"
+                             :score 35
+                             }
+                            {
+                             :name "Evelyn"
+                             :score 38
+                             }]))

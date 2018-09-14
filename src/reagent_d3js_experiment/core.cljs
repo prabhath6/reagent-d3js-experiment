@@ -170,6 +170,51 @@
         (.attr "stroke-width" 4)
         (.attr "fill" "none"))))
 
+(defn sort-handler-desc []
+  [:input {
+           :type "button"
+           :value "sort desc"
+           :on-click (fn []
+                       (-> js/d3
+                           (.selectAll ".person")
+                           (.sort (fn [a b]
+                                    (- (string->int (aget b "score")) (string->int (aget a "score")))))))}])
+(defn sort-handler-asc []
+  [:input {
+           :type "button"
+           :value "sort asc"
+           :on-click (fn []
+                       (-> js/d3
+                           (.selectAll ".person")
+                           (.sort (fn [a b]
+                                    (- (string->int (aget a "score")) (string->int (aget b "score")))))))}])
+
+(defn user-data-viz []
+  (let [test-data (clj->js @st/user-data)
+        bar-width 400
+        bar-scale (-> js/d3
+                      .scaleLinear
+                      (.domain #js [0 100])
+                      (.range #js [0 bar-width]))
+        base (-> js/d3
+                 (.select "#wrapper")
+                 (.selectAll "person")
+                 (.data test-data))
+        person (-> base
+                   .enter
+                   (.append "div")
+                   (.attr "class" "person"))]
+    (-> person
+        (.append "div")
+        (.attr "class" "label")
+        (.text (fn [d]
+                 (aget d "name"))))
+    (-> person
+        (.append "div")
+        (.attr "class" "bar")
+        (.attr "style" (fn [d]
+                          (str "width: "(bar-scale (string->int (aget d "score"))) "px;"))))))
+
 ;; -------------------------
 ;; Views
 
@@ -184,8 +229,11 @@
   (line-viz-implement)
   (path-viz)
   (path-viz-implement)
+  (user-data-viz)
   [:div
-   [:h2 "Charts D3"]])
+   [:h2 "Charts D3"]
+  [sort-handler-asc]
+  [sort-handler-desc]])
 
 ;; -------------------------
 ;; Initialize app

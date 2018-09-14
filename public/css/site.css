@@ -49,3 +49,21 @@ a:hover {
 .n, .v {
     padding-right: 5px;
 }
+
+.person {
+    height: 20px;
+    position: relative;
+}
+.person .label {
+    width: 90px;
+    text-align: right;
+}
+.person .bar {
+    height: 19px;
+    background-color: steelblue;
+    position: absolute;
+    left: 100px;
+}
+.person div {
+    display: inline-block;
+}
